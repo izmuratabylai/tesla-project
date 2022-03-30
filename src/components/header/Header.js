@@ -76,6 +76,8 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   z-index: 1;
+  
+
 `;
 
 const Menu = styled.div`
