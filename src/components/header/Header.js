@@ -1,7 +1,11 @@
-import React from "react";
+import React,{useState} from "react";
 import styled from "styled-components";
 
 const Header = () => {
+
+  const [burgerStatus, setBurgerStatus] = useState(false);
+  
+
   return (
     <Container>
       <a href="#">
@@ -25,9 +29,35 @@ const Header = () => {
         <a href="#">Shop</a>
         <a href="#">Tesla Account</a>
       </RightMenu>
-      <CustomMenu>
+      <CustomMenu onClick={()=>setBurgerStatus(true)}>
         <img src="https://www.svgrepo.com/show/22896/menu.svg" alt="menu" />
       </CustomMenu>
+      <BurgerNav show={burgerStatus}>
+        <CustomCloseBtn onClick={()=>setBurgerStatus(false)}>
+          <img src="https://www.svgrepo.com/show/156979/close.svg" alt="close__btn" />
+        </CustomCloseBtn>
+        <li>
+          <a href="#">Existin Inventory</a>
+        </li>
+        <li>
+          <a href="#">Used Inventory</a>
+        </li>
+        <li>
+          <a href="#">Trade In</a>
+        </li>
+        <li>
+          <a href="#">Cybertruck</a>
+        </li>
+        <li>
+          <a href="#">Roadster</a>
+        </li>
+        <li>
+          <a href="#">Taraz Supercar</a>
+        </li>
+        <li>
+          <a href="#">Korday Sportcar</a>
+        </li>
+      </BurgerNav>
     </Container>
   );
 };
@@ -45,6 +75,7 @@ const Container = styled.div`
   right: 0;
   align-items: center;
   justify-content: space-between;
+  z-index: 1;
 `;
 
 const Menu = styled.div`
@@ -81,3 +112,40 @@ cursor: pointer;
 width: 20px;
 
 `
+
+const BurgerNav = styled.div`
+  position:  fixed;
+  top:0;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  width: 300px;
+  z-index: 100;
+  list-style: none;
+  padding: 20px;
+  display: flex;
+  text-align: start;
+  flex-direction: column;
+  
+  transform: ${props => props.show ? 'translateX(0)' : 'translateX(100%)'};
+  
+  transition: .2s ease-in-out;
+  li{
+    padding: 15px 0 ;
+    border-bottom: 1px solid rgba(0,0,0, 0.2);
+    a{
+      font-weight: 600;
+
+    }
+  }
+ 
+`
+
+const CustomCloseBtn = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  img {
+    width: 20px;
+  }
+`;
